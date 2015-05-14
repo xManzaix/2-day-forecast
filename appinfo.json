@@ -9,8 +9,8 @@
     "resources": {
         "media": [
             {
-                "file": "images/03d.png",
-                "name": "IMAGE_03d",
+                "file": "images/01d.png",
+                "name": "IMAGE_01d",
                 "type": "png"
             },
             {
@@ -19,8 +19,8 @@
                 "type": "png"
             },
             {
-                "file": "images/01d.png",
-                "name": "IMAGE_01d",
+                "file": "images/03d.png",
+                "name": "IMAGE_03d",
                 "type": "png"
             }
         ]

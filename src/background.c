@@ -1,5 +1,5 @@
-#include "background.h"
 #include <pebble.h>
+#include "background.h"
 
 // BEGIN AUTO-GENERATED UI CODE; DO NOT MODIFY
 static Window *s_window;
@@ -109,3 +109,6 @@ void hide_background(void) {
   window_stack_remove(s_window, true);
 }
 
+void update_time_layer(char *buf) {
+  text_layer_set_text(s_textlayer_time, buf);
+}

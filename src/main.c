@@ -22,6 +22,7 @@ static void update_time() {
   
   // Display this time on the TextLayer
   APP_LOG(APP_LOG_LEVEL_DEBUG, buffer);
+  update_time_layer(buffer);
 }  
    
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
