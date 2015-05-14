@@ -6,10 +6,12 @@ static Window *s_window;
 static GFont s_res_bitham_30_black;
 static GBitmap *s_res_image_01d;
 static GBitmap *s_res_image_02d;
+static GBitmap *s_res_image_03d;
 static TextLayer *s_textlayer_1;
 static TextLayer *s_textlayer_2;
 static BitmapLayer *s_bitmaplayer_1;
 static BitmapLayer *s_bitmaplayer_2;
+static BitmapLayer *s_bitmaplayer_3;
 
 static void initialise_ui(void) {
   s_window = window_create();
@@ -18,6 +20,7 @@ static void initialise_ui(void) {
   s_res_bitham_30_black = fonts_get_system_font(FONT_KEY_BITHAM_30_BLACK);
   s_res_image_01d = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_01d);
   s_res_image_02d = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_02d);
+  s_res_image_03d = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_03d);
   // s_textlayer_1
   s_textlayer_1 = text_layer_create(GRect(44, 133, 100, 35));
   text_layer_set_text(s_textlayer_1, "22:00");
@@ -37,9 +40,14 @@ static void initialise_ui(void) {
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_bitmaplayer_1);
   
   // s_bitmaplayer_2
-  s_bitmaplayer_2 = bitmap_layer_create(GRect(5, 70, 40, 40));
+  s_bitmaplayer_2 = bitmap_layer_create(GRect(0, 70, 40, 40));
   bitmap_layer_set_bitmap(s_bitmaplayer_2, s_res_image_02d);
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_bitmaplayer_2);
+  
+  // s_bitmaplayer_3
+  s_bitmaplayer_3 = bitmap_layer_create(GRect(0, 15, 40, 40));
+  bitmap_layer_set_bitmap(s_bitmaplayer_3, s_res_image_03d);
+  layer_add_child(window_get_root_layer(s_window), (Layer *)s_bitmaplayer_3);
 }
 
 static void destroy_ui(void) {
@@ -48,8 +56,10 @@ static void destroy_ui(void) {
   text_layer_destroy(s_textlayer_2);
   bitmap_layer_destroy(s_bitmaplayer_1);
   bitmap_layer_destroy(s_bitmaplayer_2);
+  bitmap_layer_destroy(s_bitmaplayer_3);
   gbitmap_destroy(s_res_image_01d);
   gbitmap_destroy(s_res_image_02d);
+  gbitmap_destroy(s_res_image_03d);
 }
 // END AUTO-GENERATED UI CODE
 
