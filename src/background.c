@@ -14,6 +14,8 @@ static BitmapLayer *s_condition_day2;
 static BitmapLayer *s_condition_day3;
 static BitmapLayer *s_bitmaplayer_4;
 static BitmapLayer *s_bitmaplayer_1;
+static TextLayer *s_textlayer_day3;
+static TextLayer *s_textlayer_day2;
 
 static void initialise_ui(void) {
   s_window = window_create();
@@ -60,6 +62,18 @@ static void initialise_ui(void) {
   s_bitmaplayer_1 = bitmap_layer_create(GRect(0, 110, 144, 2));
   bitmap_layer_set_background_color(s_bitmaplayer_1, GColorBlack);
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_bitmaplayer_1);
+  
+  // s_textlayer_day3
+  s_textlayer_day3 = text_layer_create(GRect(62, 25, 80, 15));
+  text_layer_set_text(s_textlayer_day3, "22°, 14kn, NW");
+  text_layer_set_text_alignment(s_textlayer_day3, GTextAlignmentRight);
+  layer_add_child(window_get_root_layer(s_window), (Layer *)s_textlayer_day3);
+  
+  // s_textlayer_day2
+  s_textlayer_day2 = text_layer_create(GRect(62, 80, 80, 15));
+  text_layer_set_text(s_textlayer_day2, "22°, 14kn, NW");
+  text_layer_set_text_alignment(s_textlayer_day2, GTextAlignmentRight);
+  layer_add_child(window_get_root_layer(s_window), (Layer *)s_textlayer_day2);
 }
 
 static void destroy_ui(void) {
@@ -71,6 +85,8 @@ static void destroy_ui(void) {
   bitmap_layer_destroy(s_condition_day3);
   bitmap_layer_destroy(s_bitmaplayer_4);
   bitmap_layer_destroy(s_bitmaplayer_1);
+  text_layer_destroy(s_textlayer_day3);
+  text_layer_destroy(s_textlayer_day2);
   gbitmap_destroy(s_res_image_01d);
   gbitmap_destroy(s_res_image_02d);
   gbitmap_destroy(s_res_image_03d);
