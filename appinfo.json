@@ -1,0 +1,36 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "michael_aka_manzai@hotmail.com",
+    "longName": "2-day-forecast",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "images/03d.png",
+                "name": "IMAGE_03d",
+                "type": "png"
+            },
+            {
+                "file": "images/02d.png",
+                "name": "IMAGE_02d",
+                "type": "png"
+            },
+            {
+                "file": "images/01d.png",
+                "name": "IMAGE_01d",
+                "type": "png"
+            }
+        ]
+    },
+    "sdkVersion": "2",
+    "shortName": "2-day-forecast",
+    "uuid": "1366f1a2-9eda-4186-89a3-a1fc05a5355d",
+    "versionCode": 1,
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
+}
