@@ -1,7 +1,8 @@
 {
     "appKeys": {},
     "capabilities": [
-        ""
+        "location",
+        "configurable"
     ],
     "companyName": "michael_aka_manzai@hotmail.com",
     "longName": "2-day-forecast",
@@ -12,23 +13,15 @@
                 "file": "images/01d.png",
                 "name": "IMAGE_01d",
                 "type": "png"
-            },
-            {
-                "file": "images/02d.png",
-                "name": "IMAGE_02d",
-                "type": "png"
-            },
-            {
-                "file": "images/03d.png",
-                "name": "IMAGE_03d",
-                "type": "png"
             }
         ]
     },
-    "sdkVersion": "2",
+    "sdkVersion": "3",
     "shortName": "2-day-forecast",
+    "targetPlatforms": [
+        "aplite"
+    ],
     "uuid": "1366f1a2-9eda-4186-89a3-a1fc05a5355d",
-    "versionCode": 1,
     "versionLabel": "1.0",
     "watchapp": {
         "watchface": true
