@@ -1,7 +1,21 @@
 #include <pebble.h>
 #include "background.h"
-//#include "background2dayforecast.c"
- 
+
+#define KEY_DATE 0
+#define KEY_TEMPERATURE_DAY1 1
+#define KEY_TEMPERATURE_DAY2 2
+#define KEY_TEMPERATURE_DAY3 3
+#define KEY_CONDITION_DAY1 4
+#define KEY_CONDITION_DAY2 5
+#define KEY_CONDITION_DAY3 6
+#define KEY_WINDSPEED_DAY1 7
+#define KEY_WINDSPEED_DAY2 8
+#define KEY_WINDSPEED_DAY3 9
+#define KEY_WINDDIR_DAY1 10
+#define KEY_WINDDIR_DAY2 11
+#define KEY_WINDDIR_DAY3 12
+
+
   
 static void update_time() {
   // Get a tm structure
@@ -41,7 +55,66 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
     app_message_outbox_send();
   }
 }
+
+static void inbox_received_callback(DictionaryIterator *iterator, void *context) {
+    //Store incomming information
+  static char temperature_day1_buffer[8];
+  static char temperature_day2_buffer[8];
+  static char temperature_day3_buffer[8];    
+  static char conditions_day1_buffer[32];
+  static char conditions_day2_buffer[32];
+  static char conditions_day3_buffer[32];
+  static char windspeed_day1_buffer[8];
+  static char windspeed_day2_buffer[8];
+  static char windspeed_day3_buffer[8];
+  static char winddir_day1_buffer[8];
+  static char winddir_day2_buffer[8];
+  static char winddir_day3_buffer[8];
+  static char weather_day1_layer_buffer[32];
+  static char weather_day2_layer_buffer[32];
+  static char weather_day3_layer_buffer[32];
+  static char date_buffer[32];
+
   
+  //Read first item
+  Tuple *t = dict_read_first(iterator);
+  
+  //for all item
+  while(t != NULL) {
+    //Which key was received?
+    switch(t->key) {
+    case KEY_TEMPERATURE_DAY1:
+      snprintf(temperature_day1_buffer, sizeof(temperature_day1_buffer), "%dC", (int)t->value->int32);
+      break;
+    case KEY_TEMPERATURE_DAY2:
+      snprintf(temperature_day2_buffer, sizeof(temperature_day2_buffer), "%dC", (int)t->value->int32);
+      break;
+     case KEY_TEMPERATURE_DAY3:
+      snprintf(temperature_day3_buffer, sizeof(temperature_day3_buffer), "%dC", (int)t->value->int32);
+      break;   
+    case KEY_CONDITIONS:
+      snprintf(conditions_buffer, sizeof(conditions_buffer), "%s", t->value->cstring);
+      break;
+    case KEY_WINDSPEED:
+      snprintf(windspeed_buffer, sizeof(windspeed_buffer), "%dkn", (int)t->value->int32);
+      break;
+    case KEY_WINDDIRECTION:
+      snprintf(winddir_buffer, sizeof(winddir_buffer), "%s", t->value->cstring);
+      break;  
+    default:
+      APP_LOG(APP_LOG_LEVEL_ERROR, "Key %d not recognized!", (int)t->key);
+      break;
+    }
+    
+    //look for next item
+    t = dict_read_next(iterator);
+  }
+  //Assemble full string and display
+  snprintf(weather_layer_buffer, sizeof(weather_layer_buffer), "%s, %s, %s", temperature_buffer, conditions_buffer, windspeed_buffer);
+  text_layer_set_text(s_weather_layer, weather_layer_buffer);
+  text_layer_set_text(s_winddir_layer, winddir_buffer);
+} 
+
 static void inbox_dropped_callback(AppMessageResult reason, void *context) {
   APP_LOG(APP_LOG_LEVEL_ERROR, "Message dropped!");
 }
@@ -61,7 +134,7 @@ static void init() {
   tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
 
   //Register callbacks
-  //app_message_register_inbox_received(inbox_received_callback);
+  app_message_register_inbox_received(inbox_received_callback);
   app_message_register_inbox_dropped(inbox_dropped_callback);
   app_message_register_outbox_failed(outbox_failed_callback);
   app_message_register_outbox_sent(outbox_sent_callback);

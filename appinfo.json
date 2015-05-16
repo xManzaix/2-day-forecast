@@ -1,5 +1,16 @@
 {
-    "appKeys": {},
+    "appKeys": {
+    	"KEY_DATE" : 0,
+    	"KEY_TEMPERATURE_DAY1" : 1,
+    	"KEY_TEMPERATURE_DAY2" : 2,
+    	"KEY_TEMPERATURE_DAY3" : 3,
+    	"KEY_CONDITION_DAY1" : 4,
+    	"KEY_CONDITION_DAY2" : 5,
+    	"KEY_CONDITION_DAY3" : 6,
+    	"KEY_WINDSPEED_DAY1" : 7,
+    	"KEY_WINDSPEED_DAY2" : 8,
+    	"KEY_WINDSPEED_DAY3" : 9
+    	},
     "capabilities": [
         "location",
         "configurable"
