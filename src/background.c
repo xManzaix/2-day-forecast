@@ -29,7 +29,7 @@ static void initialise_ui(void) {
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_textlayer_time);
   
   // s_textlayer_date
-  s_textlayer_date = text_layer_create(GRect(22, 117, 120, 15));
+  s_textlayer_date = text_layer_create(GRect(22, 113, 120, 15));
   text_layer_set_text(s_textlayer_date, "23 Mar, 22°, 14kn, NW");
   text_layer_set_text_alignment(s_textlayer_date, GTextAlignmentRight);
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_textlayer_date);
@@ -40,12 +40,12 @@ static void initialise_ui(void) {
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_condition_day1);
   
   // s_condition_day2
-  s_condition_day2 = bitmap_layer_create(GRect(0, 70, 40, 40));
+  s_condition_day2 = bitmap_layer_create(GRect(0, 65, 40, 40));
   bitmap_layer_set_bitmap(s_condition_day2, s_res_image_01d);
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_condition_day2);
   
   // s_condition_day3
-  s_condition_day3 = bitmap_layer_create(GRect(0, 15, 40, 40));
+  s_condition_day3 = bitmap_layer_create(GRect(0, 10, 40, 40));
   bitmap_layer_set_bitmap(s_condition_day3, s_res_image_01d);
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_condition_day3);
   
@@ -60,13 +60,13 @@ static void initialise_ui(void) {
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_bitmaplayer_1);
   
   // s_textlayer_day3
-  s_textlayer_day3 = text_layer_create(GRect(62, 25, 80, 15));
+  s_textlayer_day3 = text_layer_create(GRect(62, 23, 80, 15));
   text_layer_set_text(s_textlayer_day3, "22°, 14kn, NW");
   text_layer_set_text_alignment(s_textlayer_day3, GTextAlignmentRight);
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_textlayer_day3);
   
   // s_textlayer_day2
-  s_textlayer_day2 = text_layer_create(GRect(62, 80, 80, 15));
+  s_textlayer_day2 = text_layer_create(GRect(62, 77, 80, 15));
   text_layer_set_text(s_textlayer_day2, "22°, 14kn, NW");
   text_layer_set_text_alignment(s_textlayer_day2, GTextAlignmentRight);
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_textlayer_day2);
@@ -102,6 +102,8 @@ void show_background(void) {
 void hide_background(void) {
   window_stack_remove(s_window, true);
 }
+
+// more background functions
 
 void update_time_layer(char *buf) {
   text_layer_set_text(s_textlayer_time, buf);
